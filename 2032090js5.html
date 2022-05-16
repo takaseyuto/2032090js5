@@ -47,7 +47,7 @@
 
     // 箱を作成
     var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+    var material = new THREE.MeshPhongMaterial({ color: 0x7fffd4 });
     var box = new THREE.Mesh(geometry, material);
     box.position.set(1,0,0); //位置を指定
     scene.add(box);   // シーンに追加 
@@ -58,10 +58,10 @@
     cone.position.set(-1,0,0); //位置を指定
     scene.add(cone);   // シーンに追加 
     // sphereを作成
-    var spheregeometry = new THREE.SphereGeometry(20, 50, 50);
-    var spherematerial = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+    var spheregeometry = new THREE.SphereGeometry(1, 36, 36);
+    var spherematerial = new THREE.MeshPhongMaterial({ color: 0xffd700 , wireframe: true});
     var sphere = new THREE.Mesh(spheregeometry, spherematerial);
-    sphere.position.set(-1,0,0); //位置を指定
+    sphere.position.set(0,0.5,0); //位置を指定
     scene.add(sphere);   // シーンに追加 
 
     // 初回実行
