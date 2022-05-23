@@ -8,6 +8,7 @@
   <!-- <script src="./three.js"></script> -->
   <!-- three.jsを読み込む(CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
 
 </head>
 <body>
@@ -49,20 +50,36 @@
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var material = new THREE.MeshPhongMaterial({ color: 0x7fffd4 });
     var box = new THREE.Mesh(geometry, material);
+    box.castShadow = true;
     box.position.set(1,0,0); //位置を指定
     scene.add(box);   // シーンに追加 
+
     // coneを作成
     var conegeometry = new THREE.ConeGeometry(0.5, 1, 50);
     var conematerial = new THREE.MeshPhongMaterial({ color: 0x0000ff });
     var cone = new THREE.Mesh(conegeometry, conematerial);
     cone.position.set(-1,0,0); //位置を指定
+    cone.castShadow = true;
     scene.add(cone);   // シーンに追加 
+
+
     // sphereを作成
     var spheregeometry = new THREE.SphereGeometry(1, 36, 36);
-    var spherematerial = new THREE.MeshPhongMaterial({ color: 0xffd700 , wireframe: true});
+    var spherematerial = new THREE.MeshPhongMaterial({ color: 0xffd700 , wireframe: true });
     var sphere = new THREE.Mesh(spheregeometry, spherematerial);
     sphere.position.set(0,0.5,0); //位置を指定
     scene.add(sphere);   // シーンに追加 
+
+
+    //グループ化
+    const all = new THERR.Group()
+    all.add(box);
+    all.add(cone);
+    all.add(aphere);
+    all.position.set(0,0,0);
+    scene.add(all);
+
+    update();
 
     // 初回実行
     var update = function() {
@@ -76,6 +93,8 @@
       sphere.rotation.x += 0.01;
       sphere.rotation.y += 0.01;
 
+      all.rotation.x += 0.02;
+      all.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
     update();
